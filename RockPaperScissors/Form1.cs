@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Threading;
-
-/// <summary>
-/// A rock, paper, scissors game that utilizes basic methods
-/// for repetitive tasks.
-/// </summary>
 
 namespace RockPaperScissors
 {
@@ -21,11 +10,7 @@ namespace RockPaperScissors
     {
         string playerChoice, cpuChoice;
 
-        int wins = 0;
-        int losses = 0;
-        int ties = 0;
-        int choicePause = 1000;
-        int outcomePause = 3000;
+        int wins, losses, ties = 0;
 
         Random randGen = new Random();
 
@@ -46,42 +31,37 @@ namespace RockPaperScissors
 
         private void rockButton_Click(object sender, EventArgs e)
         {
-            /// TODO Set the playerchoice value, show the appropriate image,
-
-            //set player choices
             playerChoice = "rock";
             playerImage.BackgroundImage = rockImage;
-            jabPlayer.Play();
 
             computerTurn();
+            decideWinner();
         }
 
         private void paperButton_Click(object sender, EventArgs e)
         {
-            //set player choices
             playerChoice = "paper";
             playerImage.BackgroundImage = paperImage;
-            jabPlayer.Play();
 
             computerTurn();
+            decideWinner();
         }
 
         private void scissorsButton_Click(object sender, EventArgs e)
         {
-            //set player choices
             playerChoice = "scissors";
             playerImage.BackgroundImage = scissorImage;
-            jabPlayer.Play();
 
             computerTurn();
+            decideWinner();
         }
 
         public void computerTurn()
         {
-            //computer shape
+            jabPlayer.Play();
+
             int randValue = randGen.Next(1, 4);
 
-            //set cpu choices
             if (randValue == 1)
             {
                 cpuChoice = "rock";
@@ -105,7 +85,6 @@ namespace RockPaperScissors
 
         public void decideWinner()
         {
-            //select winner and update variables
             if (playerChoice == cpuChoice)
             {
                 resultImage.BackgroundImage = tieImage;
